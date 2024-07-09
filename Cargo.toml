@@ -1,0 +1,13 @@
+[package]
+name = "forge_move"
+version = "0.1.0"
+authoris = ["Shane Poppleton <shane@bjja.com.au>"]
+description = "A program to backup a site from one forge server and copy it to another."
+repository = "https://github.com/codemonkey76/rust_forge_move"
+edition = "2021"
+license = "MIT"
+
+[dependencies]
+clap = { version = "4.5.9", features = ["derive"] }
+dirs = "5.0.1"
+regex = "1.10.5"
