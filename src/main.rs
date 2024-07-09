@@ -140,7 +140,7 @@ fn get_database_credentials(folder_path: &str, site_type: Site) -> AppResult<db:
             if let Ok(contents) = fs::read_to_string(folder.join("wp-config.php")) {
                 let db_name = extract_wp_var(&contents, "DB_NAME");
                 let username = extract_wp_var(&contents, "DB_USER");
-                let password = extract_wp_var(&contents, "DB_PASS");
+                let password = extract_wp_var(&contents, "DB_PASSWORD");
                 if let (Some(database), Some(username), Some(password)) =
                     (db_name, username, password)
                 {
