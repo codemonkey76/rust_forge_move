@@ -7,6 +7,7 @@ pub enum AppError {
     UnknownSite,
     MissingDatabaseCredentials,
     IoError(std::io::Error),
+    BackupError(String),
 }
 
 impl fmt::Display for AppError {
@@ -15,6 +16,7 @@ impl fmt::Display for AppError {
             AppError::UnknownSite => write!(f, "Unknown site type"),
             AppError::MissingDatabaseCredentials => write!(f, "Missing database credentials"),
             AppError::IoError(err) => write!(f, "IO Error: {}", err),
+            AppError::BackupError(err) => write!(f, "Error executing backup: {}", err),
         }
     }
 }

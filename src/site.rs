@@ -163,6 +163,23 @@ impl<W> Site<Detected, GotCredentials, DbNotBackedUp, W> {
 }
 impl<V> Site<Detected, GotCredentials, V, FilesNotBackedUp> {
     pub fn files_backup(self) -> AppResult<Site<Detected, GotCredentials, V, FilesBackedUp>> {
+        let backup_dir = self.temp.join("forge_backup");
+        std::fs::create_dir_all(&backup_dir)?;
+        let out_path = backup_dir.join("backup.files.tar.gz");
+        let tar = Command::new("tar")
+            .arg("-zcpvf")
+            .arg(out_path)
+            .arg(".")
+            .current_dir(&self.path)
+            .stdout(Stdio::piped())
+            .output()?;
+
+        if !tar.status.success() {
+            return Err(AppError::BackupError(
+                String::from_utf8(tar.stderr).expect("Unable to read stderr"),
+            ));
+        }
+
         Ok(Site {
             detect_state: PhantomData,
             credentials_state: PhantomData,
