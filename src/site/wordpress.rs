@@ -10,13 +10,17 @@ pub fn get_credentials(folder: &std::path::Path) -> AppResult<Credentials> {
         let db_name = extract_wp_var(&contents, "DB_NAME");
         let username = extract_wp_var(&contents, "DB_USER");
         let password = extract_wp_var(&contents, "DB_PASSWORD");
-        if let (Some(database), Some(username), Some(password)) = (db_name, username, password) {
+        if let (Some(database), Some(username), Some(password)) = (&db_name, &username, &password) {
             return Ok(Credentials {
-                database,
-                username,
-                password,
+                database: database.to_string(),
+                username: username.to_string(),
+                password: password.to_string(),
             });
+        } else {
+            eprintln!("Unable to read required credentials (db_name, db_user, db_password): ({:?}, {:?}, {:?})", db_name, username, password);
         }
+    } else {
+        eprintln!("Unable to read file: {:?}", folder.join("wp-config.php"));
     }
     Err(AppError::MissingDatabaseCredentials)
 }
