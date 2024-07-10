@@ -1,8 +1,8 @@
 use regex::Regex;
 
 use crate::{
-    db::Credentials,
     error::{AppError, AppResult},
+    types::Credentials,
 };
 
 pub fn get_credentials(folder: &std::path::Path) -> AppResult<Credentials> {
