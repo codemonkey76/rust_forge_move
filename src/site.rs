@@ -25,17 +25,17 @@ pub enum SiteType {
     Magento,
 }
 
-struct NotDetected;
-struct Detected;
+pub struct NotDetected;
+pub struct Detected;
 
-struct NoCredentials;
-struct GotCredentials;
+pub struct NoCredentials;
+pub struct GotCredentials;
 
-struct DbBackedUp;
-struct DbNotBackedUp;
+pub struct DbBackedUp;
+pub struct DbNotBackedUp;
 
-struct FilesBackedUp;
-struct FilesNotBackedUp;
+pub struct FilesBackedUp;
+pub struct FilesNotBackedUp;
 
 pub struct Site<DetectionState, CredentialsState, DbBackupState, FileBackupState> {
     detect_state: PhantomData<DetectionState>,

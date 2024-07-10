@@ -17,7 +17,7 @@ use site::Site;
 
 fn main() -> AppResult<()> {
     let args = Args::parse();
-    let s = Site::new(Path::new(&args.dir).to_path_buf(), get_home_dir()?)
+    Site::new(Path::new(&args.dir).to_path_buf(), get_home_dir()?)
         .detect()?
         .get_credentials()?
         .db_backup()?
