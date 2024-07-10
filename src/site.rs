@@ -71,6 +71,7 @@ impl Site<NotDetected, NoCredentials, DbNotBackedUp, FilesNotBackedUp> {
 impl<U> Site<NotDetected, U, DbNotBackedUp, FilesNotBackedUp> {
     pub fn detect(self) -> AppResult<Site<Detected, U, DbNotBackedUp, FilesNotBackedUp>> {
         let site_type = detect_site_type(&self.path)?;
+        println!("Detected site: {:?}", site_type);
         Ok(Site {
             detect_state: PhantomData,
             credentials_state: PhantomData,

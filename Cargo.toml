@@ -1,6 +1,6 @@
 [package]
 name = "forge_move"
-version = "0.4.0"
+version = "0.5.0"
 authoris = ["Shane Poppleton <shane@bjja.com.au>"]
 description = "A program to backup a site from one forge server and copy it to another."
 repository = "https://github.com/codemonkey76/rust_forge_move"
